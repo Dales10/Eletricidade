@@ -1,0 +1,419 @@
+function selecionar() {
+
+            var select = document.getElementById("formula")
+            var selected = select.value
+
+            var la0 = document.createElement("label")
+            var la1 = document.createElement("label")
+            var la2 = document.createElement("label")
+            var la3 = document.createElement("label")
+
+            var res = document.getElementById("res")
+            var resAll = document.createElement("div")
+            resAll.setAttribute("id", "resAll")
+            var res0 = document.createElement("div")
+            res0.setAttribute("id", "res0")
+            var res1 = document.createElement("div")
+            res1.setAttribute("id", "res1")
+            var res2 = document.createElement("div")
+            res2.setAttribute("id", "res2")
+            var res3 = document.createElement("div")
+            res3.setAttribute("id", "res3")
+            var res4 = document.createElement("div")
+            res4.setAttribute("id", "res4")
+            var resultado = document.getElementById("resultado")
+            var principal = document.createElement("div")
+            principal.setAttribute("id", "principal")
+            var respostas = document.createElement("div")
+            respostas.setAttribute("id", "respostas")
+            res.innerHTML = ""
+            resultado.innerHTML = ""
+            var erro = document.createElement("div")
+            erro.setAttribute("id", "erro")
+            
+            if (selected == "fe") {
+                la0.setAttribute("for", "campoEle")
+                la0.setAttribute("id", "lace0")
+                la0.innerHTML = "Digite o valor do <strong>Campo Elétrico (E)</strong>:"
+                res0.appendChild(la0)
+                var campoEle = document.createElement("input")
+                campoEle.setAttribute("id", "campoEle")
+                res0.appendChild(campoEle)
+                var inputcampoEle = document.createElement("input")
+                inputcampoEle.setAttribute("id", "inputcampoEle")
+                res0.appendChild(inputcampoEle)
+                resAll.appendChild(res0)
+                
+                la1.setAttribute("for", "forcaEle")
+                la1.setAttribute("id", "lace1")
+                la1.innerHTML = "Digite o valor da <strong>Força Elétrica (Fe)</strong>:"
+                res1.appendChild(la1)
+                var forcaEle = document.createElement("input")
+                forcaEle.setAttribute("id", "forcaEle")
+                res1.appendChild(forcaEle)
+                var inputforcaEle = document.createElement("input")
+                inputforcaEle.setAttribute("id", "inputforcaEle")
+                res1.appendChild(inputforcaEle)
+                resAll.appendChild(res1)
+                
+                la2.setAttribute("for", "cargaProva")
+                la2.setAttribute("id", "lace2")
+                la2.innerHTML = "Digite o valor da <strong>Carga de Prova (q)</strong>:"
+                res2.appendChild(la2)
+                var cargaProva = document.createElement("input")
+                cargaProva.setAttribute("id", "cargaProva")
+                res2.appendChild(cargaProva)
+
+                
+                var submultiplos = document.createElement("select")
+                submultiplos.setAttribute("id", "submultiplos")
+
+                var options0 = document.createElement("option")
+                options0.setAttribute("value", "normal")
+                options0.text = "none"
+
+                var options1 = document.createElement("option")
+                options1.setAttribute("value", "mili")
+                options1.text = "m - mili"
+
+                var options2 = document.createElement("option")
+                options2.setAttribute("value", "micro")
+                options2.text = "μ - micro"
+
+                var options3 = document.createElement("option")
+                options3.setAttribute("value", "nano")
+                options3.text = "n - nano"
+
+                var options4 = document.createElement("option")
+                options4.setAttribute("value", "pico")
+                options4.text = "p - pico"
+
+                submultiplos.appendChild(options0)
+                submultiplos.appendChild(options1)
+                submultiplos.appendChild(options2)
+                submultiplos.appendChild(options3)
+                submultiplos.appendChild(options4)
+                res2.appendChild(submultiplos)
+                resAll.appendChild(res2)
+
+                
+                var button = document.createElement("input")
+                button.setAttribute("type", "button")
+                button.setAttribute("id", "calcular")
+                button.setAttribute("value", "Calcular")
+                res3.appendChild(button)
+                resAll.appendChild(res3)
+
+                button.onclick = function () {
+                    var ce = document.getElementById("campoEle").value
+                    ce = ce.replace(",", ".")
+                    var fe = document.getElementById("forcaEle").value
+                    fe = fe.replace(",", ".")
+                    var qe = document.getElementById("cargaProva").value
+                    qe = qe.replace(",", ".")
+                    var potencia = ""
+                    var valor = ""
+                    var equacaoResultado = ""
+
+                    var potenciasub0 = document.getElementById("inputcampoEle").value
+                    var potenciasub1 = document.getElementById("inputforcaEle").value
+                    var potenciasub2 = document.getElementById("submultiplos").value
+                    var potenciasub3 = multisub(potenciasub2)
+
+                    if (Number(qe) < 0) {
+                        qe = - Number(qe)
+                    }
+                    
+                    if (ce.length == 0) {
+                        potencia = Number(potenciasub1) - potenciasub3
+                        valor = Number(fe)/ Number(qe)
+                        equacaoResultado = "E = " + valor + ` × 10^(${potencia}) <i>N/C</i>`
+
+                    } else if (fe.length == 0) {
+                        potencia = Number(potenciasub0) + potenciasub3
+                        valor = Number(qe) * Number(ce)
+                        equacaoResultado = "F = " + valor + ` × 10^(${potencia}) <i>N</i>`
+
+                    } else if (qe.length == 0) {
+                        potencia = Number(potenciasub1) - Number(potenciasub0)
+                        valor = Number(fe)/ Number(ce)
+                        equacaoResultado = "q = " + valor + ` × 10^(${potencia}) <i>C</i>`
+
+                    }
+                    if (isNaN(valor)){
+                        erro.innerHTML = "<u><strong>[ERRO: Falta de dados]</strong></u>"
+                        respostas.innerHTML = "Por favor insira os dados necessários para a equacão ser calculada."
+                    } else {
+                        erro.innerHTML = ""
+                        respostas.innerHTML = equacaoResultado.replace(".", ",")
+                    }
+
+                    principal.appendChild(erro)
+                    principal.appendChild(respostas)
+                    resultado.appendChild(principal)
+                    
+                    var ce = document.getElementById("campoEle").value = ""
+                    var fe = document.getElementById("forcaEle").value = ""
+                    var qe = document.getElementById("cargaProva").value = ""
+                    var potenciasub0 = document.getElementById("inputcampoEle").value = ""
+                    var potenciasub1 = document.getElementById("inputforcaEle").value = ""
+                }
+                res.appendChild(resAll)
+
+            } else if (selected == "ce") {
+
+                la0.setAttribute("for", "campoElefe")
+                la0.setAttribute("id", "lafe0")
+                la0.innerHTML = "Digite o valor do <strong>Campo Elétrico (E)</strong>:"
+                res0.appendChild(la0)
+                var campoEle = document.createElement("input")
+                campoEle.setAttribute("id", "campoElefe")
+                res0.appendChild(campoEle)
+                var inputcampoEle = document.createElement("input")
+                inputcampoEle.setAttribute("id", "inputcampoElefe")
+                res0.appendChild(inputcampoEle)
+                resAll.appendChild(res0)
+
+                la1.setAttribute("for", "constanteVacuo")
+                la1.setAttribute("id", "lafe1")
+                la1.innerHTML = "Digite o valor da <strong>Constante (K)</strong>:"
+                res1.appendChild(la1)
+                var constanteVacuo = document.createElement("input")
+                constanteVacuo.setAttribute("id", "constanteVacuo")
+                res1.appendChild(constanteVacuo)
+                var inputConstante = document.createElement("input")
+                inputConstante.setAttribute("id", "inputConstante")
+                res1.appendChild(inputConstante)
+                resAll.appendChild(res1)
+                
+                la2.setAttribute("for", "cargaFonte")
+                la2.setAttribute("id", "lafe2")
+                la2.innerHTML = "Digite o valor da <strong>Carga Fonte (Q)</strong>:"
+                res2.appendChild(la2)
+                var cargaFonte = document.createElement("input")
+                cargaFonte.setAttribute("id", "cargaFonte")
+                res2.appendChild(cargaFonte)
+
+
+                var submultiplos = document.createElement("select")
+                submultiplos.setAttribute("id", "submultiplos")
+
+                var options0 = document.createElement("option")
+                options0.setAttribute("value", "normal")
+                options0.text = "none"
+
+                var options1 = document.createElement("option")
+                options1.setAttribute("value", "mili")
+                options1.text = "m -mili"
+
+                var options2 = document.createElement("option")
+                options2.setAttribute("value", "micro")
+                options2.text = "μ - micro"
+
+                var options3 = document.createElement("option")
+                options3.setAttribute("value", "nano")
+                options3.text = "n - nano"
+
+                var options4 = document.createElement("option")
+                options4.setAttribute("value", "pico")
+                options4.text = "p - pico"
+
+                submultiplos.appendChild(options0)
+                submultiplos.appendChild(options1)
+                submultiplos.appendChild(options2)
+                submultiplos.appendChild(options3)
+                submultiplos.appendChild(options4)
+                res2.appendChild(submultiplos)
+                resAll.appendChild(res2)
+
+
+
+                la3.setAttribute("for", "distancia")
+                la3.setAttribute("id", "lafe3")
+                la3.innerHTML = "Digite o valor da <strong>Distancia (d)</strong>:"
+                res3.appendChild(la3)
+                distancia = ""
+                var distancia = document.createElement("input")
+                distancia.setAttribute("id", "distancia")
+                res3.appendChild(distancia)
+
+
+                var medida = document.createElement("select")
+                medida.setAttribute("id", "medida")
+
+                var option1 = document.createElement("option")
+                option1.setAttribute("value", "km")
+                option1.text = "km"
+                
+                var option2 = document.createElement("option")
+                option2.setAttribute("value", "hm")
+                option2.text = "hm"
+
+                var option3 = document.createElement("option")
+                option3.setAttribute("value", "dam")
+                option3.text = "dam"
+
+                var option4 = document.createElement("option")
+                option4.setAttribute("value", "m")
+                option4.text = "m"
+
+                var option5 = document.createElement("option")
+                option5.setAttribute("value", "dm")
+                option5.text = "dm"
+
+                var option6 = document.createElement("option")
+                option6.setAttribute("value", "cm")
+                option6.text = "cm"
+
+                var option7 = document.createElement("option")
+                option7.setAttribute("value", "mm")
+                option7.text = "mm"
+
+                medida.appendChild(option1)
+                medida.appendChild(option2)
+                medida.appendChild(option3)
+                medida.appendChild(option4)
+                medida.appendChild(option5)
+                medida.appendChild(option6)
+                medida.appendChild(option7)
+                res3.appendChild(medida)
+                resAll.appendChild(res3)
+                
+
+                var button = document.createElement("input")
+                button.setAttribute("type", "button")
+                button.setAttribute("id", "calcular")
+                button.setAttribute("value", "Calcular")
+                res4.appendChild(button)
+                resAll.appendChild(res4)
+
+                button.onclick = function () {
+                    var ce = document.getElementById("campoElefe").value
+                    ce = ce.replace(",", ".")
+                    var kv = document.getElementById("constanteVacuo").value
+                    kv = kv.replace(",", ".")
+                    var qf = document.getElementById("cargaFonte").value
+                    qf = qf.replace(",", ".")
+                    var d2 = document.getElementById("distancia").value
+                    d2= d2.replace(",", ".")
+                    var medida = document.getElementById("medida").value
+                    var distancia = distance(medida, d2)
+                    var distancia2 = distance2(medida)
+
+                    var potenciasub0 = document.getElementById("inputcampoElefe").value
+                    var potenciasub1 = document.getElementById("inputConstante").value
+                    var potenciasub2 = document.getElementById("submultiplos").value
+                    var potenciasub3 = multisub(potenciasub2)
+                    if (Number(qf) < 0) {
+                        qf = - Number(qf)
+                    }
+
+                    if (ce.length == 0) {
+                        potencia = Number(potenciasub1) + potenciasub3 - (distancia2 * 2)
+                        valor = (Number(kv) * Number(qf))/ (Number(d2)** 2)
+                        equacaoResultado = "E = " + valor + ` × 10^(${potencia})` + " <i>N/C</i>"
+
+                    } else if (kv.length == 0) {
+                        potencia = Number(potenciasub1) - potenciasub3
+                        valor = ((distancia** 2) * Number(ce))/ qf
+                        equacaoResultado = "K = " + valor + ` × 10^(${potencia})` + " <i>N × m²/C²</i>"
+
+                    } else if (qf.length == 0) {
+                        potencia = Number(potenciasub1) - potenciasub3
+                        valor = ((distancia** 2) * Number(ce))/ Number(kv)
+                        equacaoResultado = "Q = " + valor + ` × 10^(${potencia})` + "<i>C</i>"
+
+                    } else if (d2.length == 0) {
+                        potencia = Number(potenciasub3) + Number(potenciasub1) - Number(potenciasub0)
+                        valor = (Number(kv) * Number(qf))/ Number(ce)
+                        equacaoResultado = "d² = " + valor + ` × 10^(${potencia})` + "<i>m²</i>"
+
+                    }
+                    if (isNaN(valor)){
+                        erro.innerHTML = "<u><strong>[ERRO: Falta de dados]</strong></u>"
+                        respostas.innerHTML = "Por favor insira os dados necessários para a equacão ser calculada."
+                    } else{
+                        erro.innerHTML = ""
+                        respostas.innerHTML = equacaoResultado.replace(".", ",")
+                    }
+
+                    principal.appendChild(erro)
+                    principal.appendChild(respostas)
+                    resultado.appendChild(principal)
+                    
+                    var ce = document.getElementById("campoElefe").value = ""
+                    var kv = document.getElementById("constanteVacuo").value = ""
+                    var qf = document.getElementById("cargaFonte").value = ""
+                    var d2 = document.getElementById("distancia").value = ""
+                    var potenciasub0 = document.getElementById("inputcampoElefe").value = ""
+                    var potenciasub1 = document.getElementById("inputConstante").value = ""
+                }
+                res.appendChild(resAll)
+            }
+        }
+
+        function multisub(a){
+            if (a == "tera") {
+                return 12
+            } else if (a == "giga") {
+                return 9
+            } else if (a == "mega") {
+                return 6
+            } else if (a == "quilo") {
+                return 3
+            } else if (a == "hecto") {
+                return 2
+            } else if ( a == "deca") {
+                return 1
+            } else if (a == "normal") {
+                return 0
+            } else if (a == "deci") {
+                return -1
+            } else if (a == "centi") {
+                return -2
+            } else if (a == "mili") {
+                return -3
+            } else if (a == "micro") {
+                return -6
+            } else if (a == "nano") {
+                return -9
+            } else if (a == "pico") {
+                return -12
+            }
+        }
+
+        function distance(a, b) {
+            if(a == "km") {
+                return b * 1000
+            } else if (a == "hm") {
+                return b * 100
+            } else if (a == "dam") {
+                return b * 10
+            } else if (a == "m") {
+                return b
+            } else if (a == "dm") {
+                return b / 10
+            } else if (a == "cm") {
+                return b / 100
+            } else if (a == "mm") {
+                return b / 1000
+            }
+        }
+
+        function distance2(a) {
+            if(a == "km") {
+                return 3
+            } else if (a == "hm") {
+                return 2
+            } else if (a == "dam") {
+                return 1
+            } else if (a == "m") {
+                return 0
+            } else if (a == "dm") {
+                return -1
+            } else if (a == "cm") {
+                return -2
+            } else if (a == "mm") {
+                return -3
+            }
+        }

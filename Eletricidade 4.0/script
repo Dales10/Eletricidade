@@ -1,0 +1,793 @@
+//Irá colocar as imagens com as fórmulas mostrando como elas são
+function formulas() {
+    let selecionarImagem = document.querySelector("#formula").value
+    let divImg = document.querySelector("#formulasImagens")
+    divImg.innerHTML = ""
+
+    var img = document.createElement("img")
+    img.setAttribute("id", "img")
+    if (selecionarImagem == "0") {
+        img.setAttribute("src", "imagens/formula01.jpeg")
+        divImg.appendChild(img)
+    } else if (selecionarImagem == "1") {
+        img.setAttribute("src", "imagens/formula02.jpeg")
+        divImg.appendChild(img)
+    } else if (selecionarImagem == "2") {
+        img.setAttribute("src", "imagens/formula03.jpeg")
+        divImg.appendChild(img)
+    } else if (selecionarImagem == "3") {
+        img.setAttribute("src", "imagens/formula04.jpeg")
+        divImg.appendChild(img)
+    } else if (selecionarImagem == "4") {
+        img.setAttribute("src", "imagens/formula05.jpeg")
+        divImg.appendChild(img)
+    } else if (selecionarImagem == "5") {
+        img.setAttribute("src", "imagens/formula06.jpeg")
+        divImg.appendChild(img)
+    } else if (selecionarImagem == "6") {
+        img.setAttribute("src", "imagens/formula07.jpeg")
+        divImg.appendChild(img)
+    } else {
+        img.setAttribute("src", "imagens/formula08.jpeg")
+        divImg.appendChild(img)
+    }
+    reset()
+    iniciar(selecionarImagem)
+}
+
+
+//Irá adicionar tudo que é necessário para coletar as informações na ordem desejada
+function iniciar(select) {
+    res.innerHTML = ""
+    const resCenter = ["res00", "res01", "res02", "res03", "res04", "res05"]
+    if (select == 0) {
+        //Quardam as informações em arrays que serão usadas nos for
+        const inputPrincipal = ["Fe", "K", "Q", "q", "d"]
+        const inputSecundario = ["Fe-Potencia", "K-Potencia"]
+        const text = ["Força Elétrica <strong>(F)</strong>", "Constante <strong>(K)</strong>", "Carga Fonte <strong>(Q)</strong>", "Carga de Prova <strong>(q)</strong>", "Distância <strong>(d)</strong>"]
+        inserir(5, inputPrincipal, inputSecundario, resCenter, text, 2)
+        sub(2, resCenter, 1)
+        sub(3, resCenter, 0)
+        Selectdistancia(4, resCenter)
+
+        var buttonLimpar = limpar(resCenter[5])
+
+    } else if (select == 1) {
+        var inputPrincipal = ["E", "Fe", "q"]
+        var inputSecundario = ["E-Potencia", "Fe-Potencia"]
+        var text = ["Campo Elétrico <strong>(E)</strong>", "Força Elétrica <strong>(Fe)</strong>", "Carga de Prova <strong>(q)</strong>"]
+        inserir(3, inputPrincipal, inputSecundario, resCenter, text, 2)
+        sub(2, resCenter, 0)
+
+        var buttonLimpar = limpar(resCenter[3])
+
+    } else if (select == 2) {
+        var inputPrincipal = ["E", "K", "d", "Q"]
+        var inputSecundario = ["E-Potencia", "K-Potencia"]
+        var text = ["Campo Elétrico <strong>(E)</strong>:", "Constante <strong>(K)</strong>:", "Distancia <strong>(d)</strong>:", "Carga Fonte <strong>(Q)</strong>:"]
+        inserir(4, inputPrincipal, inputSecundario, resCenter, text, 2)
+        Selectdistancia(2, resCenter)
+        sub(3, resCenter, 1)
+
+        var buttonLimpar = limpar(resCenter[5])
+
+    } else if (select == 3) {
+        var inputPrincipal = ["V", "Epe", "q"]
+        var inputSecundario = ["V-Potencia", "Epe-Potencia"]
+        var text = ["Potencial Elétrico <strong>(V)</strong>", "Energia Potencial <strong>(Epe)</strong>", "Carga de Prova <strong>(q)</strong>"]
+        inserir(3, inputPrincipal, inputSecundario, resCenter, text, 2)
+        sub(2, resCenter, 0)
+
+        var buttonLimpar = limpar(resCenter[3])
+
+    } else if (select == 4) {
+        var inputPrincipal = ["V", "K", "Q", "d"]
+        var inputSecundario = ["V-Potencia", "K-Potencia"]
+        var text = ["Potencial Elétrico <strong>(V)</strong>", "Constante <strong>(K)</strong>:", "Carga Fonte <strong>(Q)</strong>:", "Distância <strong>(d)</strong>:"]
+        inserir(4, inputPrincipal, inputSecundario, resCenter, text, 2)
+        sub(2, resCenter, 1)
+        Selectdistancia(3, resCenter)
+
+        var buttonLimpar = limpar(resCenter[4], "clear4")
+
+    } else if (select == 5) {
+        var inputPrincipal = ["Epe", "K", "Q", "q", "d"]
+        var inputSecundario = ["Epe-Potencia", "K-Potencia"]
+        var text = ["Energia Potencial <strong>(Epe)</strong>", "Constante <strong>(K)</strong>", "Carga Fonte <strong>(Q)</strong>", "Carga de Prova <strong>(q)</strong>", "Distância <strong>(d)</strong>"]
+        inserir(5, inputPrincipal, inputSecundario, resCenter, text, 2)
+        sub(2, resCenter, 1)
+        sub(3, resCenter, 0)
+        Selectdistancia(4, resCenter)
+
+        var buttonLimpar = limpar(resCenter[5])
+
+    } else if (select == 6) {
+        var inputPrincipal = ["tau", "U", "Va", "Vb", "q"]
+        var inputSecundario = ["tau-Potencia", "U-Potencia", "Va-Potencia", "Vb-Potencia"]
+        var text = ["Trabalho <strong>(τ)</strong>", "Diferença de Potencial <strong>(U)</strong>", "Potencial Elétrico A <strong>(Va)</strong>", "Potencial Elétrico B <strong>(Vb)</strong>", "Carga de Prova <strong>(q)</strong>"]
+        inserir(5, inputPrincipal, inputSecundario, resCenter, text, 4)
+        sub(4, resCenter, 0)
+
+        var buttonLimpar = limpar(resCenter[5])
+
+    } else if (select == 7) {
+        var inputPrincipal = ["E", "U", "Va", "Vb", "d"]
+        var inputSecundario = ["E-Potencia", "U-Potencia", "Va-Potencia", "Vb-Potencia", "d-Potencia"]
+        var text = ["Campo Elétrico <strong>(E)</strong>", "Diferença de Potencial <strong>(U)</strong>", "Potencial Elétrico A <strong>(Va)</strong>", "Potencial Elétrico B <strong>(Vb)</strong>", "Distância <strong>(d)</strong>"]
+        inserir(5, inputPrincipal, inputSecundario, resCenter, text, 4)
+        Selectdistancia(4, resCenter)
+
+        var buttonLimpar = limpar(resCenter[5])
+    }
+
+    buttonLimpar.onclick = () => {
+        reset()
+    }
+}
+
+//Redireciona os eventos (keyup e change) dos input e select para a função com a equação que será usada
+function calcular() {
+    let select = document.querySelector("#formula").value
+    let potenciaResultado = ""
+    let equacaoResultado = ""
+    let valor = ""
+
+    if (select == 0) {
+        equacao1(potenciaResultado, equacaoResultado, valor)
+    } else if (select == 1) {
+        equacao2(potenciaResultado, equacaoResultado, valor)
+    } else if (select == 2) {
+        equacao3(potenciaResultado, equacaoResultado, valor)
+    } else if (select == 3) {
+        equacao4(potenciaResultado, equacaoResultado, valor)
+    } else if (select == 4) {
+        equacao5(potenciaResultado, equacaoResultado, valor)
+    } else if (select == 5) {
+        equacao6(potenciaResultado, equacaoResultado, valor)
+    } else if (select == 6) {
+        equacao7(potenciaResultado, equacaoResultado, valor)
+    } else if (select == 7) {
+        equacao8(potenciaResultado, equacaoResultado, valor)
+    }
+}
+
+function equacao1(potenciaResultado, equacaoResultado, valor) {
+    const Fe = document.querySelector("#Fe").value.replace(",", ".")
+    let K = document.querySelector("#K").value.replace(",", ".")
+    const Q = document.querySelector("#Q").value.replace(",", ".")
+    const q = document.querySelector("#q").value.replace(",", ".")
+    const d = document.querySelector("#d").value.replace(",", ".")
+    const k = K
+
+    const potenciaFe = Number(document.querySelector("#Fe-Potencia").value)
+    let potenciaK = Number(document.querySelector("#K-Potencia").value)
+    const potenciaQ = Number(document .querySelector("#submultiplo_Q").value)
+    const potenciaq = Number(document.querySelector("#submultiplo_q").value)
+    const potenciaComprimento = Number(document.querySelector("#distancia").value)
+
+    //Se não for digitado um valor para K, será atribuído o valor 9 para ele e 9 para a sua potência
+    if(K.length == 0) {
+        K = 9
+        potenciaK = 9
+    }
+
+    //Caso a carga de prova seja negativa, deixa o valor digitado positivo
+    if (Number(Q) < 0) {
+        Q = - Number(Q)
+    }
+
+    //Caso a carga de prova seja negativa, deixa o valor digitado positivo
+    if (Number(q) < 0) {
+        q = - Number(q)
+    }
+
+    //Parte resposánvel pelos cálculos com base nos dados coletados
+    if (Fe.length == 0 && Q.length != 0 && Q.length != 0 && d.length != 0) {
+        potenciaResultado = ` • 10<sup>${potenciaK + potenciaQ + potenciaq - potenciaComprimento* 2}</sup>`
+        valor = Number(K) * Number(Q) * Number(q)/ Number(d)**2
+        if (potenciaK + potenciaQ + potenciaq - potenciaComprimento == 0 || isNaN(potenciaK + potenciaQ + potenciaq - potenciaComprimento)) {
+            potenciaResultado = ""
+        }   
+        equacaoResultado = `Fe = ${valor} ${potenciaResultado} <em>N</em>`
+    } else if (Q.length == 0 && d.length != 0 && Fe.length != 0 && q.length != 0) {
+        potenciaResultado = ` • 10<sup>${potenciaComprimento* 2 + potenciaFe - potenciaq - potenciaK}</sup>`
+        valor = Number(d)** 2 * Number(Fe)/ Number(q)/ Number(K)
+        if (potenciaComprimento* 2 + potenciaFe - potenciaq - potenciaK == 0 || isNaN(potenciaComprimento* 2 + potenciaFe - potenciaq - potenciaK)) {
+            potenciaResultado= ""
+        }
+        equacaoResultado = `Q = ${valor} ${potenciaResultado} <em>C</em>`
+
+    } else if (k.length == 0 && d.length != 0 && Fe.length != 0 && q.length != 0 && Q.length != 0) {
+        potenciaResultado = ` • 10<sup>${potenciaComprimento* 2 + potenciaFe - potenciaq - potenciaQ}</sup>`
+        valor = Number(d)** 2 * Number(Fe)/ Number(q)/ Number(Q)
+        if (potenciaComprimento + potenciaFe - potenciaq - potenciaQ == 0 || isNaN(potenciaComprimento + potenciaFe - potenciaq - potenciaQ)) {
+            potenciaResultado = ""
+        }
+        equacaoResultado = `K = ${valor} ${potenciaResultado} <em>N • m²/C²</em>`
+
+    } else if (q.length == 0 && d.length != 0 && Fe.length != 0 && Q.length != 0) {
+        potenciaResultado = ` • 10<sup>${potenciaComprimento* 2 + potenciaFe - potenciaK - potenciaQ}</sup>`
+        valor = Number(d)** 2 * Number(Fe)/ Number(K)/ Number(Q)
+        if (potenciaComprimento* 2 + potenciaFe - potenciaK - potenciaQ == 0 || isNaN(potenciaComprimento* 2 + potenciaFe - potenciaK - potenciaQ)) {
+            potenciaResultado = ""
+        }
+        equacaoResultado = `q = ${valor} ${potenciaResultado} <em>C</em>`
+
+    } else if (d.length == 0 && Q.length != 0 && q.length != 0 && Fe.length != 0) {
+        potenciaResultado = ` • 10<sup>${potenciaK + potenciaQ + potenciaq - potenciaFe}</sup>`
+        valor = Number(K) * Number(Q) * Number(q)/ Number(Fe)
+        var valorRaiz = Math.sqrt(valor)
+        var potenciaRaiz = ` • 10<sup>${(potenciaK + potenciaQ + potenciaq - potenciaFe)/ 2}</sup>`
+        if (potenciaK + potenciaQ + potenciaq - potenciaFe == 0 || isNaN(potenciaK + potenciaQ + potenciaq - potenciaFe)) {
+            potenciaResultado = ""
+            potenciaRaiz = ""
+        }
+        equacaoResultado = `d² = ${valor} ${potenciaResultado} <em>m²</em><br>d = ${valorRaiz} ${potenciaRaiz} <em>m</em>`
+
+    }
+    final(equacaoResultado, valor)
+}
+
+function equacao2(potenciaResultado, equacaoResultado, valor) {
+    const E = document.querySelector("#E").value.replace(",", ".")
+    const Fe = document.querySelector("#Fe").value.replace(",", ".")
+    var q = document.querySelector("#q").value.replace(",", ".")
+
+    const potenciaE = Number(document.querySelector("#E-Potencia").value)
+    const potenciaFe = Number(document.querySelector("#Fe-Potencia").value)
+    const potenciaq = Number(document.querySelector("#submultiplo_q").value)
+
+    //Caso a carga de prova seja negativa, deixa o valor digitado positivo
+    if (Number(q) < 0) {
+        q = - Number(q)
+    }
+
+    //Parte resposánvel pelos cálculos com base nos dados coletados
+    if (E.length == 0 && Fe.length != 0 && q.length != 0) {
+        potenciaResultado = ` • 10<sup>${potenciaFe - potenciaq}</sup>`
+        valor = Number(Fe)/ Number(q)
+        if (potenciaFe - potenciaq == 0 || isNaN(potenciaFe - potenciaq)) {
+            potenciaResultado = ""
+        }
+        equacaoResultado = `E = ${valor} ${potenciaResultado} <em>N/C</em>`
+        
+    } else if (Fe.length == 0 && q.length != 0 && E.length != 0) {
+        potenciaResultado = ` • 10<sup>${potenciaE + potenciaq}</sup>`
+        valor = Number(q) * Number(E)
+        if (potenciaE + potenciaq == 0 || isNaN(potenciaE + potenciaq)) {
+            potenciaResultado = ""
+        }
+        equacaoResultado = `Fe = ${valor} ${potenciaResultado} <em>N</em>`
+
+    } else if (q.length == 0 && Fe.length != 0 && E.length != 0) {
+        potenciaResultado = ` • 10<sup>${potenciaFe - potenciaE}</sup>`
+        valor = Number(Fe)/ Number(E)
+        if (potenciaFe - potenciaE == 0 || isNaN(potenciaFe - potenciaE)) {
+            potenciaResultado = ""
+        }
+        equacaoResultado = `q = ${valor} ${potenciaResultado} <em>C</em>`
+
+    }
+    final(equacaoResultado, valor)
+}
+
+function equacao3(potenciaResultado, equacaoResultado, valor) {
+    const E = document.querySelector("#E").value.replace(",", ".")
+    var K = document.querySelector("#K").value.replace(",", ".")
+    const Q = document.querySelector("#Q").value.replace(",", ".")
+    const d = document.querySelector("#d").value.replace(",", ".")
+    const k = K
+
+    const potenciaE = Number(document.querySelector("#E-Potencia").value)
+    var potenciaK = Number(document.querySelector("#K-Potencia").value)
+    const potenciaQ = Number(document .querySelector("#submultiplo_Q").value)
+    const potenciaComprimento = Number(document.querySelector("#distancia").value)
+
+    //Se não for digitado um valor para K, será atribuído o valor 9 para ele e 9 para a sua potência
+    if(K.length == 0) {
+        K = 9
+        potenciaK = 9
+    }
+
+    //Caso a carga fonte seja negativa, deixa o valor digitado positivo
+    if (Number(Q) < 0) {
+        Q = - Number(Q)
+    }
+
+    if (E.length == 0 && Q.length != 0 && d.length != 0) {
+        potenciaResultado = ` • 10<sup>${potenciaK + potenciaQ - potenciaComprimento * 2}</sup>`
+        valor = Number(K) * Number(Q)/ (Number(d)** 2)
+        if (potenciaK + potenciaQ - (potenciaComprimento * 2) == 0 || isNaN(potenciaK + potenciaQ - (potenciaComprimento))) {
+            potenciaResultado = ""
+        }
+        equacaoResultado = `E = ${valor} ${potenciaResultado} <em>N/C</em>`
+
+    } else if (k.length == 0 && d.length != 0 && E.length != 0 && Q.length != 0) {
+        potenciaResultado = ` • 10<sup>${potenciaComprimento * 2 + potenciaE - potenciaQ}</sup>`
+        valor = d** 2 * Number(E)/ Q
+        if (potenciaComprimento * 2 + potenciaE - potenciaQ == 0 || isNaN(potenciaComprimento * 2 + potenciaE - potenciaQ)) {
+            potenciaResultado = ""
+        }
+        equacaoResultado = `K = ${valor} ${potenciaResultado} <em>N • m²/C²</em>`
+
+    } else if (Q.length == 0 && d.length != 0 && E.length != 0) {
+        potenciaResultado = ` • 10<sup>${potenciaComprimento* 2 + potenciaE - potenciaK}</sup>`
+        valor = d** 2 * Number(E)/ Number(K)
+        if (potenciaComprimento + potenciaE - potenciaK == 0 || isNaN(potenciaComprimento + potenciaE - potenciaK)) {
+            potenciaResultado = ""
+        }
+        equacaoResultado = `Q = ${valor} ${potenciaResultado} <em>C</em>`
+
+    } else if (d.length == 0 && Q.length != 0 && E.length != 0) {
+        potenciaResultado = ` • 10<sup>${potenciaQ + potenciaK - potenciaE}</sup>`
+        valor = Number(K) * Number(Q)/ Number(E)
+        var valorRaiz = Math.sqrt(valor)
+        var potenciaRaiz = ` • 10<sup>${(potenciaQ + potenciaK - potenciaE)/ 2}</sup>`
+        if (potenciaQ + potenciaK - potenciaE == 0 || isNaN(potenciaQ + potenciaK - potenciaE)) {
+            potenciaResultado = ""
+            potenciaRaiz = ""
+        }
+        equacaoResultado = `d² = ${valor} ${potenciaResultado} <em>m²</em><br>d = ${valorRaiz} ${potenciaRaiz} <i>m</i>`
+
+    }
+    final(equacaoResultado, valor)
+}
+
+function equacao4(potenciaResultado, equacaoResultado, valor) {
+    const V = document.querySelector("#V").value.replace(",", ".")
+    const Epe = document.querySelector("#Epe").value.replace(",", ".")
+    const q = document.querySelector("#q").value.replace(",", ".")
+
+    const potenciaV = Number(document.querySelector("#V-Potencia").value)
+    const potenciaEpe = Number(document.querySelector("#Epe-Potencia").value)
+    const potenciaq = Number(document.querySelector("#submultiplo_q").value)
+
+    //Parte resposánvel pelos cálculos com base nos dados coletados
+    if (V.length == 0 && Epe.length != 0 && q.length != 0) {
+        potenciaResultado = ` • 10<sup>${potenciaEpe - potenciaq}</sup>`
+        valor = Number(Epe) / Number(q)
+        if (potenciaEpe - potenciaq == 0 || isNaN(potenciaEpe - potenciaq)) {
+            potenciaResultado = ""
+        }
+        equacaoResultado = `V = ${valor} ${potenciaResultado} <em>V</em>`
+        
+    } else if (Epe.length == 0 && V.length != 0 && q.length != 0) {
+        potenciaResultado = ` • 10<sup>${potenciaV + potenciaq}</sup>`
+        valor = Number(V) * Number(q)
+        if (potenciaV + potenciaq == 0 || isNaN(potenciaV + potenciaq)) {
+            potenciaResultado = ""
+        }
+        equacaoResultado = `Epe = ${valor} ${potenciaResultado} <em>J</em>`
+
+    } else if (q.length == 0 && Epe.length != 0 && V.length != 0) {
+        potenciaResultado = ` • 10<sup>${potenciaEpe - potenciaV}</sup>`
+        valor = Number(Epe) / Number(V)
+        if (potenciaEpe - potenciaV == 0 || isNaN(potenciaEpe - potenciaV)) {
+            potenciaResultado = ""
+        }
+        equacaoResultado = `q = ${valor} ${potenciaResultado} <em>C</em>`
+
+    }
+    final(equacaoResultado, valor)
+}
+
+function equacao5(potenciaResultado, equacaoResultado, valor) {
+    const V = document.querySelector("#V").value.replace(",", ".")
+    var K = document.querySelector("#K").value.replace(",", ".")
+    const Q = document.querySelector("#Q").value.replace(",", ".")
+    const d = document.querySelector("#d").value.replace(",", ".")
+    const k = K
+
+    const potenciaV = document.querySelector("#V-Potencia").value
+    var potenciaK = document.querySelector("#K-Potencia").value
+    const potenciaQ = Number(document .querySelector("#submultiplo_Q").value)
+    const potenciaComprimento = Number(document.querySelector("#distancia").value)
+
+    //Se não for digitado um valor para K, será atribuído o valor 9 para ele e 9 para a sua potência
+    if(K.length == 0) {
+        K = 9
+        potenciaK = 9
+    }
+
+    //Parte resposánvel pelos cálculos com base nos dados coletados
+    if (V.length == 0 && Q.length != 0 && d.length != 0) {
+        potenciaResultado = ` • 10<sup>${potenciaK + potenciaQ - potenciaComprimento}</sup>`
+        valor = Number(K) * Number(Q) / Number(d)
+        if (potenciaK + potenciaQ - potenciaComprimento == 0 || isNaN(potenciaK + potenciaQ - potenciaComprimento)) {
+            potenciaResultado = ""
+        }
+        equacaoResultado = `V = ${valor} ${potenciaResultado} <em>V</em>`
+
+    } else if (k.length == 0 && V.length != 0 && d.length != 0 && Q.length != 0) {
+        potenciaResultado = ` • 10<sup>${Number(potenciaV) + potenciaComprimento - Number(potenciaQ)}</sup>`
+        valor = Number(V) * Number(d) / Number(Q)
+        if (potenciaV + potenciaComprimento - potenciaQ == 0 || isNaN(potenciaV + potenciaComprimento - potenciaQ)) {
+            potenciaResultado = ""
+        }
+        equacaoResultado = `K = ${valor} ${potenciaResultado} <em>N • m²/C²</em>`
+
+    } else if (Q.length == 0 && V.length != 0 && d.length != 0) {
+        potenciaResultado = ` • 10<sup>${potenciaV + potenciaComprimento - potenciaK}</sup>`
+        valor = Number(V) * Number(d) / Number(K)
+        if (potenciaV + potenciaComprimento - potenciaK == 0 || isNaN(potenciaV + potenciaComprimento - potenciaK)) {
+            potenciaResultado = ""
+        }
+        equacaoResultado = `Q = ${valor} ${potenciaResultado} <em>C</em>`
+
+    } else if (d.length == 0 && Q.length != 0 && V.length != 0) {
+        potenciaResultado = ` • 10<sup>${potenciaK + potenciaQ - potenciaV}</sup>`
+        valor = Number(K) * Number(Q) / Number(V)
+        if (potenciaK + potenciaQ - potenciaV == 0 || isNaN(potenciaK + potenciaQ - potenciaV)) {
+            potenciaResultado = ""
+        }
+        equacaoResultado = `d = ${valor} ${potenciaResultado} <em>m</em>`
+
+    }
+    final(equacaoResultado, valor)
+}
+
+function equacao6(potenciaResultado, equacaoResultado, valor) {
+    const Epe = document.querySelector("#Epe").value.replace(",", ".")
+    var K = document.querySelector("#K").value.replace(",", ".")
+    const Q = document.querySelector("#Q").value.replace(",", ".")
+    const q = document.querySelector("#q").value.replace(",", ".")
+    const d = document.querySelector("#d").value.replace(",", ".")
+    const k = K
+
+    const potenciaEpe = Number(document.querySelector("#Epe-Potencia").value)
+    var potenciaK = Number(document.querySelector("#K-Potencia").value)
+    const potenciaQ = Number(document .querySelector("#submultiplo_Q").value)
+    const potenciaq = Number(document.querySelector("#submultiplo_q").value)
+    const potenciaComprimento = Number(document.querySelector("#distancia").value)
+
+    //Se não for digitado um valor para K, será atribuído o valor 9 para ele e 9 para a sua potência
+    if(K.length == 0) {
+        K = 9
+        potenciaK = 9
+    }
+    
+    //Parte resposánvel pelos cálculos com base nos dados coletados
+    if (Epe.length == 0 && Q.length != 0 && q.length != 0 && d.length != 0) {
+        potenciaResultado = ` • 10<sup>${potenciaK + potenciaQ + potenciaq - potenciaComprimento}</sup>`
+        valor = Number(K) * Number(Q) * Number(q) / Number(d)
+        if (potenciaK + potenciaQ + potenciaq - potenciaComprimento == 0 || isNaN(potenciaK + potenciaQ + potenciaq - potenciaComprimento)) {
+            potenciaResultado = ""
+        }
+        equacaoResultado = `Epe = ${valor} ${potenciaResultado} <em>J</em>`
+
+    } else if (k.length == 0 && d.length != 0 && Epe.length != 0 && q.length != 0 && Q.length != 0) {
+        potenciaResultado = ` • 10<sup>${potenciaComprimento + potenciaEpe - potenciaq - potenciaQ}</sup>`
+        valor = Number(d) * Number(Epe) / Number(q) / Number(Q)
+        if (potenciaComprimento + potenciaEpe - potenciaq - potenciaQ == 0 || isNaN(otenciaComprimento + potenciaEpe - potenciaq - potenciaQ)) {
+            potenciaResultado = ""
+        }
+        equacaoResultado = `K = ${valor} ${potenciaResultado} <em>N • m²/C²</em>`
+
+    } else if (Q.length == 0 && d.length != 0 && Epe.length != 0 && q.length != 0) {
+        potenciaResultado = ` • 10<sup>${potenciaComprimento + potenciaEpe - potenciaq - potenciaK}</sup>`
+        valor = Number(d) * Number(Epe) / Number(q) / Number(K)
+        if (potenciaComprimento + potenciaEpe - potenciaq - potenciaK == 0 || isNaN(potenciaComprimento + potenciaEpe - potenciaq - potenciaK)) {
+            potenciaResultado = ""
+        }
+        equacaoResultado = `Q = ${valor} ${potenciaResultado} <em>C</em>`
+
+    } else if (q.length == 0 && d.length != 0 && Epe.length != 0 && Q.length != 0) {
+        potenciaResultado = ` • 10<sup>${potenciaComprimento + potenciaEpe - potenciaK - potenciaQ}</sup>`
+        valor = Number(d) * Number(Epe) / Number(K) / Number(Q)
+        if (potenciaComprimento + potenciaEpe - potenciaK - potenciaQ == 0 || isNaN(potenciaComprimento + potenciaEpe - potenciaK - potenciaQ)) {
+            potenciaResultado = ""
+        }
+        equacaoResultado = `q = ${valor} ${potenciaResultado} <em>C</em>`
+
+    } else if (d.length == 0 && K.length != 0 && q.length != 0 && Q.length != 0 && Epe.length != 0) {
+        potenciaResultado = ` • 10<sup>${potenciaK + potenciaq + potenciaQ - potenciaEpe}</sup>`
+        valor = Number(K) * Number(q) * Number(Q) / Number(Epe)
+        if (potenciaK + potenciaq + potenciaQ - potenciaEpe == 0 || isNaN(potenciaK + potenciaq + potenciaQ - potenciaEpe)) {
+            potenciaResultado = ""
+        }
+        equacaoResultado = `d = ${valor} ${potenciaResultado} <em>m</em>`
+
+    }
+    final(equacaoResultado, valor)
+}
+
+function equacao7(potenciaResultado, equacaoResultado, valor) {
+    const t = document.querySelector("#tau").value.replace(",", ".")
+    const q = document.querySelector("#q").value.replace(",", ".")
+    var U = document.querySelector("#U").value.replace(",", ".")
+    var Va = document.querySelector("#Va").value.replace(",", ".")
+    const Vb = document.querySelector("#Vb").value.replace(",", ".")
+    const u = U
+    const va = Va
+
+    const potenciat = Number(document.querySelector("#tau-Potencia").value)
+    const potenciaq = Number(document.querySelector("#submultiplo_q").value)
+    const potenciaU = Number(document.querySelector("#U-Potencia").value)
+    const potenciaVa = Number(document.querySelector("#Va-Potencia").value)
+    const potenciaVb = Number(document.querySelector("#Vb-Potencia").value)
+
+    //Se não tiver sido digitado um valor para Va e/ou Vb, Va recebe "NaN" para poder ser usado como parâmetro no "if" a seguir
+    if (Va.length == 0 && Vb.length == 0) {
+        Va = NaN
+    }
+    
+    var verificacao = "yes"
+    //Determina a diferença entre os dois potenciais A e B, caso U não tenha um valor
+    if (U.length == 0) {
+        U = Number(Va) * 10** potenciaVa - Number(Vb) * 10** potenciaVb
+        verificacao = "no"
+        if (isNaN(U)) {
+            U = 0
+        }
+    }
+
+    //Parte resposánvel pelos cálculos com base nos dados coletados
+    if ((t.length == 0 && q.length != 0 && u.length != 0) || (t.length == 0 && q.length != 0 && Va.length != 0 && Vb.length != 0)) {
+        if (verificacao == "yes") {
+            potenciaResultado = ` • 10<sup>${potenciaq + potenciaU}</sup>`
+            valor = q * U
+            if (potenciaq + potenciaU == 0 || isNaN(potenciaq + potenciaU)) {
+                potenciaResultado = ""
+            }
+            equacaoResultado = `t = ${valor} ${potenciaResultado} <em>J</em>`
+        } else {
+            potenciaResultado = ` • 10<sup>${potenciaq}</sup>`
+            if (potenciaq == 0 || isNaN(potenciaq)) {
+                potenciaResultado = ""
+            }
+            valor = Number(q) * U
+            equacaoResultado = `t = ${valor} ${potenciaResultado} <em>J</em>`
+        }
+            
+
+    } else if ((u.length == 0 && t.length != 0 && q.length != 0) || (Va.length == 0 && Vb.length == 0 && t.length != 0 && q.length != 0)) {
+        potenciaResultado = ` • 10<sup>${potenciat - potenciaq}</sup>`
+        valor = Number(t) / Number(q)
+        if (potenciat - potenciaq == 0 || isNaN(potenciat - potenciaq)) {
+            potenciaResultado = ""
+        }
+        equacaoResultado = `U = ${valor} ${potenciaResultado} <em>V</em>`
+
+    } else if ((q.length == 0 && t.length != 0 && u.length != 0) || (q.length == 0 && t.length != 0 && Va.length != 0 && Vb.length != 0)) {
+        if (verificacao == "yes") {
+            potenciaResultado = ` • 10<sup>${potenciat - potenciaU}</sup>`
+            valor = t / U
+            if (potenciat - potenciaU == 0 || isNaN(potenciat - potenciaU)) {
+                potenciaResultado = ""
+            }
+            equacaoResultado = `q = ${valor} ${potenciaResultado} <em>C</em>`
+        } else {
+            valor = Number(t) * 10** Number(potenciat) / U
+            equacaoResultado = `q = ${valor} <em>C</em>`
+        }
+
+    } else if (va.length == 0 && t.length != 0 && q.length != 0 && Vb.length != 0) {
+        valor = (Number(t) * 10** Number(potenciat) + (Number(q) * 10** potenciaq * Number(Vb) * 10** Number(potenciaVb))) / Number(q)
+        potenciaResultado = ` • 10<sup>${- potenciaq}</sup>`
+        if (potenciaq == 0 || isNaN(potenciaq)) {
+            potenciaResultado = ""
+        }
+        equacaoResultado = `Va = ${valor} ${potenciaResultado} <em>V</em>`
+
+    } else if (Vb.length == 0 && t.length != 0 && q.length != 0 && va.length != 0) {
+        valor = (Number(t) * 10** Number(potenciat) - (Number(q) * 10** potenciaq * Number(Va) * 10** Number(potenciaVa))) / - Number(q)
+        equacaoResultado = `Vb = ${valor} • 10^(${- potenciaq}) <em>V</em>`
+
+    } else if (va.length != 0 && Vb.length != 0 && t.length ==0 && q.length == 0) {
+        equacaoResultado = `U = ${U} <em>V</em>`
+    }
+    final(equacaoResultado, valor)
+}
+
+function equacao8(potenciaResultado, equacaoResultado, valor) {
+    const E = document.querySelector("#E").value.replace(",", ".")
+    var U = document.querySelector("#U").value.replace(",", ".")
+    var Va = document.querySelector("#Va").value.replace(",", ".")
+    const Vb = document.querySelector("#Vb").value.replace(",", ".")
+    const d = document.querySelector("#d").value.replace(",", ".")
+    const u = U
+    const va = Va
+
+    const potenciaE = Number(document.querySelector("#E-Potencia").value)
+    const potenciaU = Number(document.querySelector("#U-Potencia").value)
+    const potenciaVa = Number(document.querySelector("#Va-Potencia").value)
+    const potenciaVb = Number(document.querySelector("#Vb-Potencia").value)
+    const potenciaComprimento = Number(document.querySelector("#distancia").value)
+
+    //Se não tiver sido digitado um valor para Va e/ou Vb, Va recebe "NaN" para poder ser usado como parâmetro no "if" a seguir
+    if (Va.length == 0 && Vb.length == 0) {
+        Va = NaN
+    }
+    
+    var verificacao = "yes"
+    //Determina a diferença entre os dois potenciais A e B, caso U não tenha um valor
+    if (U.length == 0) {
+        U = Number(Va) * 10** potenciaVa - Number(Vb) * 10** potenciaVb
+        verificacao = "no"
+        if (isNaN(U)) {
+            U = 0
+        }
+    }
+
+    //Parte resposánvel pelos cálculos com base nos dados coletados
+    if ((E.length == 0 && u.length != 0 && d.length != 0) || (E.length == 0 && va.length != 0 && Vb.length != 0 && d.length != 0)) {
+        if (verificacao == "yes") {
+            potenciaResultado = ` • 10<sup>${potenciaU - potenciaComprimento}</sup>`
+            valor = U / d
+            if (potenciaU - potenciaComprimento == 0 || isNaN(potenciaU - potenciaComprimento)) {
+                potenciaResultado = ""
+            }
+            equacaoResultado = `E = ${valor} ${potenciaResultado} <em>V/m</em>`
+        } else {
+            valor = U / (Number(d) * 10** potenciaComprimento)
+            equacaoResultado = `E = ${valor} <i>V/m</i> `
+        }
+
+    } else if ( va == 0 && E.length != 0 && d.length != 0 && Vb.length != 0) {
+        valor = Number(E) * 10** potenciaE * Number(d) * 10** potenciaComprimento + Vb * 10** potenciaVb
+        equacaoResultado = `Va = ${valor} <em>V</em>`
+
+    } else if (Vb == 0 && E.length != 0 && d.length != 0 && va.length != 0) {
+        valor = (Number(E) * 10** potenciaE * Number(d) * 10** potenciaComprimento - Number(Va) * 10** potenciaVa) * (-1)
+        equacaoResultado = `Vb = ${valor} <em>V</em>`
+
+    } else if ((u.length == 0 && E.length != 0 && d.length != 0) || (va.length == 0 && Vb.length == 0 && E.length != 0 && d.length != 0)) {
+        potenciaResultado = ` • 10<sup>${potenciaE + potenciaComprimento}</sup>`
+        valor = Number(E) * Number(d)
+        if (potenciaE + potenciaComprimento == 0 || isNaN(potenciaE + potenciaComprimento)) {
+            potenciaResultado = ""
+        }
+        equacaoResultado = `U = ${valor} ${potenciaResultado} <em>V</em>`
+
+    } else if ((d.length == 0 && u.length != 0 && E.length != 0) || (d.length == 0 && va.length != 0 && Vb.length != 0 && E.length != 0)) {
+        if (verificacao == "yes") {
+            potenciaResultado = ` • 10<sup>${potenciaU - potenciaE}</sup>`
+            valor = U / E
+            if (potenciaU - potenciaE == 0 || isNaN(potenciaU - potenciaE)) {
+                potenciaResultado = ""
+            }
+            equacaoResultado = `d = ${valor} ${potenciaResultado} <em>m</em>`
+        } else {
+            valor = U / (Number(E) * 10** potenciaE)
+            equacaoResultado = `d = ${valor} <em>m</em>`
+        }
+
+    } else if (va.length != 0 && Vb.length != 0 && E.length == 0 && u.length == 0 && d.length == 0){
+        equacaoResultado = `U = ${U} <em>V</em>`
+    }
+    final(equacaoResultado, valor)
+}
+
+
+//Adiciona os label e input com as suas respectivas configurações
+function inserir(inPrincQuant, inputPrincipal, inputSecundario, resCenter, text, inSecunQuant) {
+    var label = ["la0", "la1", "la2", "la3", "la4"]
+    let container = document.createElement("div")
+    container.setAttribute("class", "container_conteudo")
+    res.appendChild(container)
+    for(x = 0; x < inPrincQuant; x++){
+        var resAll = document.createElement("div")
+        resAll.setAttribute("class", resCenter[x])
+        var divAll = document.createElement("div")
+        divAll.setAttribute("class", "floating_label")
+
+        var principal = document.createElement("input")
+        principal.setAttribute("id", inputPrincipal[x])
+        principal.setAttribute("class", "inputPrincipal")
+        principal.setAttribute("autocomplete", "off")
+        principal.addEventListener("keyup", calcular)
+        principal.setAttribute("placeholder", "Digite um valor")
+        principal.setAttribute("maxlength", "20")
+        if(inputPrincipal[x] == "K") {
+            principal.setAttribute("placeholder", "9") 
+        }
+        divAll.appendChild(principal)
+
+        let texto = `<span>${text[x]}</span>`
+        var la = document.createElement("label")
+        la.setAttribute("for", inputPrincipal[x])
+        la.setAttribute("id", label[x])
+        la.innerHTML = texto
+        divAll.appendChild(la)
+
+        resAll.appendChild(divAll)
+
+        //Adiciona os input onde serão colocados os números da potência de base 10
+        if (x < inSecunQuant) {
+            var secundario = document.createElement("input")
+            secundario.setAttribute("id", inputSecundario[x])
+            secundario.setAttribute("class", "inputSecundario")
+            secundario.setAttribute("autocomplete", "off")
+            secundario.addEventListener("keyup", calcular)
+            secundario.setAttribute("maxlength", "10")
+            if(inputSecundario[x] == "K-Potencia") {
+               secundario.setAttribute("placeholder", "10^(9)")
+            }
+            resAll.appendChild(secundario)
+        }
+        container.appendChild(resAll)
+    }
+    
+}
+
+//Cria os options do select de Q e q
+function sub(posicao, resCenter, nomeacao) {
+    //Quarda as informações dos submultiplos em arrays
+    let submultiplos = document.createElement("select")
+    submultiplos.setAttribute("id", "submultiplo_q")
+    submultiplos.addEventListener("change", calcular)
+    let submultiplo = [0, -1, -2, -3, -4, -5, -6, -7, -8, -9, -10, -11, -12]
+    let submultiploSigla = ["none | 10^(0)", "d - deci || 10^(-1)", "c - centi || 10^(-2)", "m - mili | 10^(-3)", "10^(-4)", "10^(-5)", "μ - micro | 10^(-6)", "10^(-7)", "10^(-8)", "n - nano | 10^(-9)", "10^(-10)", "10^(-11)", "p - pico | 10^(-12)"]
+
+    for(x = 0; x < 13; x++) {
+        let option = document.createElement("option")
+        option.setAttribute("value", submultiplo[x])
+        option.text = (submultiploSigla[x])
+        submultiplos.appendChild(option)
+    }
+    if (nomeacao == 1) {
+        submultiplos.setAttribute("id", "submultiplo_Q")
+    }
+    let resAll = document.querySelector(`.${resCenter[posicao]}`)
+    resAll.appendChild(submultiplos)
+}
+
+//Cria os options do select de distancia
+function Selectdistancia(posicao, resCenter) {
+    //Quarda as informações das distâncias
+    var comprimento = document.createElement("select")
+    comprimento.setAttribute("id", "distancia")
+    comprimento.addEventListener("change", calcular)
+    var distancia = [3, 2, 1, 0, -1, -2, -3]
+    var distanciaSigla = ["km | 10^(3)", "hm | 10^(2)", "dam | 10^(1)", "m | 10^(0)", "dm | 10^(-1)", "cm | 10^(-2)", "mm | 10^(-3)"]
+
+    for (x = 0; x < 7; x++) {
+        var option = document.createElement("option")
+        option.setAttribute("value", distancia[x])
+        option.text = (distanciaSigla[x])
+        if (distanciaSigla[x] == "m | 10^(0)") {
+            option.setAttribute("selected", "")
+        }
+        comprimento.appendChild(option)
+    }
+    var res0 = document.querySelector(`.${resCenter[posicao]}`)
+    res0.appendChild(comprimento)
+    
+}
+
+//Adiciona o botão de Limpar
+function limpar(posicao) {
+    let container = document.querySelector(".container_conteudo")
+    var buttonLimpar = document.createElement("input")
+    buttonLimpar.setAttribute("type", "reset")
+    buttonLimpar.setAttribute("id", "limpar")
+    buttonLimpar.setAttribute("value", "Limpar")
+    let resAll = document.createElement("div")
+    resAll.setAttribute("class", posicao)
+    resAll.appendChild(buttonLimpar)
+    container.appendChild(resAll)
+    return buttonLimpar
+}
+
+function reset() {
+    respostas = document.querySelector(".respostas").innerHTML = ""
+}
+
+//Responsável pelos últimos processos que as informações irão passar antes de serem exibidas
+function final(equacaoResultado, valor) {
+    if (isNaN(valor)) {
+        equacaoResultado = ""
+    }
+    let styleResultado = document.createElement("div")
+    styleResultado.setAttribute("class", "styleResultado")
+    var respostas = document.querySelector(".respostas")
+    respostas.innerHTML = ""
+    let resultado = document.createElement("div")
+    resultado.setAttribute("id", "resultado")
+    if (equacaoResultado == "") {
+       equacaoResultado =  "<p>Digite todos os dados (números) que são necessários para ser possível encontrar o valor que procura, caso contrário nenhum resultado aparecerá além desta mensagem.<p>"
+    }
+    styleResultado.innerHTML = equacaoResultado
+    resultado.appendChild(styleResultado)
+    respostas.appendChild(resultado)
+}

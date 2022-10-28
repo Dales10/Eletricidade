@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eletricidade</title>
+    <link rel="stylesheet" href="formula.css">
+    <link rel="stylesheet" href="principal.css">
+    <link rel="stylesheet" href="res.css">
+    <link rel="stylesheet" href="resultado.css">
+</head>
+<body>
+    <header>
+        <h1>Eletricidade</h1>
+    </header>
+
+    <section class="selectEquacoes">
+        <div>
+            <p>
+                <label for="formula">Escolha a fórmula que deseja usar:</label>
+                <select name="formula" id="formula">
+                    <option selected disabled>Escolher</option>
+                    <option value="Fe-K">Fe = K • Q • q/ d²</option>
+                    <option value="Fe">Fe = E • q</option>
+                    <option value="E-K">E = K • Q/ d²</option>
+                    <option value="V-Epe">V = Epe/ q</option>
+                    <option value="V-K">V = K • Q/ d</option>
+                    <option value="Epe">Epe = K • Q • q/ d</option>
+                    <option value="tau">t = q • U</option>
+                    <option value="E-U">E = U/ d</option>
+                </select>
+                <input type="button" value="Selecionar" id="selecionar" onclick="selecionar()">
+            </p>
+        </div>
+    </section>
+
+    <form action="dados">
+        <section id="res"></section>
+    </form>
+
+    <section id="resultado"></section>
+
+    <footer>&copy;ECI Areial</footer>
+    
+    <script src="script"></script>
+</body>
+</html>

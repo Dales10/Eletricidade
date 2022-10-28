@@ -1,0 +1,250 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --cor_1: #13151f;
+    --cor_2: #2f3136;
+    --cor_3: #5A5766;
+    --cor_4: #8D8D92;
+    --cor_5: #E8E8FF;
+
+    --font_destaque: 'Bebas Neue', cursive;
+    --font_padrao: 'Fira Sans', sans-serif;
+    --font_special: 'Roboto Slab', serif;
+}
+
+body {
+    background-color: var(--cor_1);
+}
+
+header {
+    font-family: var(--font_destaque);
+    color: var(--cor_4);
+    text-align: center;
+    background-image: linear-gradient(to bottom, var(--cor_1), #000);
+    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.7);
+    border-bottom: 0.1em solid rgb(68, 64, 64);
+}
+
+header h1 {
+    font-size: 5rem;
+    padding: 1.2rem 0;
+}
+
+main section h2 {
+    margin-bottom: 1rem;
+}
+
+section, .container_conteudo, #resultado {
+    background-color: var(--cor_2);
+    font-family: var(--font_padrao);
+    color: var(--cor_5);
+    line-height: 1.2rem;
+    min-width: 300px;
+    max-width: 600px;
+    padding: 2rem;
+    border-radius: 2rem;
+    margin: 2rem auto;
+    border-radius: 1rem;
+    border: 0.3em solid rgb(68, 64, 64);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.9);
+    border-top: none;
+    border-bottom: none;
+}
+
+.comoUsar p {
+    line-height: 1.3rem;
+    text-indent: 1rem;
+    text-align: justify;
+}
+
+.container_conteudo {
+    padding: 2rem 0;
+}
+
+select {
+    background-color: var(--cor_1);
+    color: var(--cor_5);
+    text-align: center;
+    cursor: pointer;
+}
+
+input {
+    border: 2px solid var(--cor_3);
+    padding: .35rem;
+    outline: none;
+    text-align: center;
+    border-radius: .5rem;
+    background-color: transparent;
+    color: var(--cor_4);
+}
+
+.inputPrincipal {
+    width: 12.7rem;
+}
+
+.inputSecundario {
+    width: 8rem;
+    color: var(--cor_4);
+}
+
+#distancia {
+    width: 8rem;
+    height: 1.9rem;
+}
+
+#submultiplo_Q {
+    width: 8rem;
+    height: 1.9rem;
+}
+
+#submultiplo_q {
+    width: 8rem;
+    height: 1.9rem;
+}
+
+#labelInicial {
+    color: var(--cor_5);
+    font-size: 1.5rem;
+}
+
+.styleResultado {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    line-height: 1.6rem;
+}
+
+div#obs {
+    margin-top: 1rem;
+}
+
+section:first-child {
+    background-color: var(--cor_5);
+    color: var(--cor_1);
+}
+
+section.container {
+    text-align: center;
+}
+
+section.container input, section.container select {
+    border-radius: 10px;
+    border: none;
+    text-align: center;
+}
+
+section.container img {
+    margin-top: 1rem;
+    border-radius: 2rem;
+}
+
+input:focus {
+    color: var(--cor_5);
+}
+
+label {
+    color: var(--cor_5);
+    transition: all .1s linear;
+}
+
+.res00, .res01, .res02, .res03, .res04, .res05 {
+    text-align: center;
+    margin: .5rem;
+}
+
+div.floating_label {
+    position: relative;
+    display: inline-block;
+}
+
+div.floating_label label {
+    position: absolute;
+    top: .4rem;
+    left: .5rem;
+}
+
+div.floating_label input:focus + label, div.floating_label input:not(:placeholder-shown) + label {
+    font-size: 8px;
+    top: -.5rem;
+}
+
+div.floating_label input:not(:focus)::placeholder {
+    opacity: 0;
+}
+
+span {
+    background-color: var(--cor_2);
+    padding: 0 .2rem;
+}
+
+#limpar {
+    margin-top: 2.2rem;
+    display: flex;
+    color: var(--cor_2);
+    border: 1px solid var(--cor_1);
+    background-color: var(--cor_4);
+    transition: all .1s linear;
+}
+
+#limpar:hover {
+    background-color: var(--cor_5);
+    color: var(--cor_1);
+    cursor: pointer;
+}
+
+footer {
+    padding: 1rem;
+}
+
+footer p {
+    color: var(--cor_3);
+    font-family: var(--font_special);
+    padding-bottom: .5rem;
+    font-size: .9rem;
+}
+
+footer div.social-redes {
+    display: inline-block;
+}
+
+footer a {
+    display: inline-block;
+    margin-left: .5rem;
+    background-color: var(--cor_1);
+    color: var(--cor_2);
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    line-height: 2rem;
+    transition: all .3s linear;
+}
+
+footer div.social-redes:hover a {
+    background-color: var(--cor_4);
+    color: var(--cor_5);
+}
+
+footer p {
+    color: var(--cor_4);
+}
+
+footer {
+    border-top: 0.1em solid rgb(68, 64, 64);
+    font-family: var(--font_destaque);
+    color: var(--cor_5);
+    text-align: center;
+    background-image: linear-gradient(to top, var(--cor_1), #000);
+    box-shadow: 0 20px 50px #000;
+}

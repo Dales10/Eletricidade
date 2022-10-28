@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eletricidade</title>
+    <script src="https://kit.fontawesome.com/316cf3a84e.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="imagens/logo_fisica.png" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <h1>FÍSICA</h1>
+    </header>
+
+    <main>
+        <section class="comoUsar">
+            <h2>Como usar</h2>
+            <p>
+                Para encontrar o dado que deseja calcular, primeiro escolha qual das fórmulas irá usar, e em seguida os campos onde será colocado os dados irão aparecer.
+            </p>
+            <p>
+                Logo após insera e escolha os dados requisitados para que possa ser calculado determinado valor (certifique-se que tem todos os dados que são necessários para que o calculo seja realizado). A primeira coluna faz referência aos primeiros dados que precisam ser inseridos, enquanto a do lado são os dados secundários ou complementares. 
+            </p>
+            <p>
+                Sendo mais direto, alguns valores podem vir acompanhados de uma potência de base 10, e é nessa segunda coluna onde deve colocá-los, ou escolher o valor correspondente, mas só precisa inserir o número que a potência de base 10 está elevado. Ex.: 10<sup>5</sup>, coloque apenas o 5 no campo.
+            </p>
+            <p>
+                Ademais, ao colocar os valores e eles atenderem ao critério de calculo de alguma incognita, o mesmo será feito e mostrado de imediato, sem a necessidade de apertar nenhum botão para confirmar.
+            </p>
+            <div id="obs">
+                <p>
+                    <strong>Obs.: Apenas use o recurso de cálculo das 8 fórmulas presente nesse site para fins de estudo.</strong>
+                </p>
+            </div>
+        </section>
+
+        <section class="container">
+            <div>
+                <label id="labelInicial" for="formula">Escolha a fórmula que deseja usar:</label><br>
+                <select name="formula" id="formula" onchange="formulas()">
+                    <option selected disabled>Escolher</option>
+                    <option value="0">Fe = K • |Q| • |q|/ d²</option>
+                    <option value="1">Fe = E • |q|</option>
+                    <option value="2">E = K • |Q|/ d²</option>
+                    <option value="3">V = Epe/ q</option>
+                    <option value="4">V = K • Q/ d</option>
+                    <option value="5">Epe = K • Q • q/ d</option>
+                    <option value="6">t = q • U</option>
+                    <option value="7">E = U/ d</option>
+                </select>
+            </div>
+            
+            <div id="formulasImagens"><img src="imagens/eletricidade.jpg" alt="elétrica" id="eletrica"></div>
+        </section>
+
+            <div class="form">
+                <form action="dados" id="res">
+                
+                </form>
+            </div>
+
+            <div class="respostas">
+
+            </div>
+    </main>
+
+    <footer>
+        <p>Me siga nas redes sociais:</p>
+        <div class="social-redes" id="instagram">
+            <a href="https://www.instagram.com/dario_delta10/"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+        <div class="social-redes" id="linkedin">
+            <a href="https://www.linkedin.com/in/d%C3%A1rio-matias-dales-gamma-587785243/"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+        <div class="social-redes" id="github">
+            <a href="https://github.com/Dales10"><i class="fa-brands fa-github"></i></a>
+        </div>
+        <div class="social-redes" id="discord">
+            <a href="https://discord.gg/sK2TGPtjXA"><i class="fa-brands fa-discord"></i></a>
+        </div>
+        <div class="social-redes" id="twitter">
+            <a href="https://twitter.com/Omega00856773"><i class="fa-brands fa-twitter"></i></a>
+        </div>
+    </footer>
+
+    <script src="script"></script>
+</body>
+</html>
